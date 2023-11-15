@@ -1,0 +1,34 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://kopr.ics.upjs.sk"
+	xmlns:kopr="http://kopr.ics.upjs.sk"
+	elementFormDefault="qualified">
+	
+	
+	<element name="AppointmentRequest">
+		<complexType>
+			<sequence>
+				<element name="patientID" type="string"/>
+				<element name="specializationCode" type="int"/>
+				<element name="conditionDescription" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="AppointmentResponse">
+		<complexType>
+			<sequence>
+				<element name="Appointment" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="doctorID" type="int"/>
+							<element name="doctorName" type="string"/>
+							<element name="date" type="string" />
+							<element name="time" type="string"/>
+							<element name="duration" type="int"/>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

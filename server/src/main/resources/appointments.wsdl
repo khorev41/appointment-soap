@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:kopr="http://kopr.ics.upjs.sk"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="appointment"
+				  targetNamespace="http://kopr.ics.upjs.sk"
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+					targetNamespace="http://kopr.ics.upjs.sk">
+			<xsd:include schemaLocation="appointments.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="AppointmentRequest">
+		<wsdl:part name="part" element="kopr:AppointmentRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="AppointmentResponse">
+		<wsdl:part name="part" element="kopr:AppointmentResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="AppointmentPortType">
+		<wsdl:operation name="AppointmentRequest">
+			<wsdl:input message="kopr:AppointmentRequest" />
+			<wsdl:output message="kopr:AppointmentResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="AppointmentsBinding"
+				  type="kopr:AppointmentPortType">
+		<soap:binding style="document"
+					  transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="AppointmentRequest">
+			<soap:operation
+					soapAction="http://kopr.ics.upjs.sk/AppointmentRequest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AppointmentsService">
+		<wsdl:port name="AppointmentsPort"
+				   binding="kopr:AppointmentsBinding">
+			<soap:address
+					location="http://localhost:8888/appointments" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
